@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>Document</title>
+    <script src="lib/jquery.min.js"></script>
+    <script src="lib/bootstrap.bundle.min.js"></script>
+    <script src="lib/clipboard.js"></script>
+    <link rel="stylesheet" href="lib/bootstrap.min.css">
+</head>
+<body style="margin: 100px 100px;">
+<button class="btn btn-primary" data-toggle="tooltip" data-original-title="Copy successful"
+        data-clipboard-text="需要复制的数据">
+    Copy
+</button>
+<script>
+    new ClipboardJS('.btn');
+    $('.btn-primary').tooltip({trigger: "click"}).mouseleave(function () {
+        $('.btn-primary').tooltip('hide');
+    });
+</script>
+</body>
+</html>
