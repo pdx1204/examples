@@ -1,0 +1,38 @@
+#game-new {
+    width: 150px;
+    height: 50px;
+    border: 1px solid aquamarine;
+    border-radius: 10px;
+    background-color: aquamarine;
+    font-size: 2em;
+    color: tan;
+    box-shadow: #c6c6c6 10px 10px 10px;
+    cursor: pointer;
+    position: absolute;
+    top: 30px;
+    left: 40%;
+}
+#undo {
+    width: 150px;
+    height: 50px;
+    border: 1px solid aquamarine;
+    border-radius: 10px;
+    background-color: aquamarine;
+    margin-left: -76px;
+    font-size: 2em;
+    color: tan;
+    box-shadow: #c6c6c6 10px 10px 10px;
+    cursor: pointer;
+    position: absolute;
+    top: 30px;
+    left: 60%;
+}
+#mycanvas {
+    border: 10px double #222;
+    position: absolute;
+    top: 100px;
+    left: 50%;
+    margin-left: -356.5px;
+    background-color: antiquewhite;
+    cursor: pointer;
+}

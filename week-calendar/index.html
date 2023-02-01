@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>周历</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+	<div id="app">
+		{{lyuef}}-{{ryuef}}月{{week[0].bottom}}-{{week[6].bottom}}号{{lyear}}-{{ryear}}年<br>
+		<button @click='back'>上</button>
+		<button @click='to'>下</button>
+		<div v-for="item in week">{{item.top}}----{{item.bottom}}</div>
+	</div>
+	<script>
+		new Vue({
+			el: "#app",
+			created() {
+				const currentDay = new Date().getDay();//当天星期几
+				const time = new Date().getTime();//当天时间戳
+				const ss = 24 * 60 * 60 * 1000;//每天的毫秒数
+
+				this.week[currentDay].bottom = new Date().getDate();//获取当天是多少号
+				let j = 0;
+				for (let i = currentDay - 1; i >= 0; i--) {
+					j--;
+					this.week[i].bottom = new Date(time + ss * j).getDate();//获取一周的前几天是多少号
+					this.lyuef = new Date(time + ss * j).getMonth() + 1;
+					this.lyear = new Date(time + ss * j).getFullYear();
+				}
+				j = 0;
+				for (let i = currentDay + 1; i < 7; i++) {
+					j++;
+					this.week[i].bottom = new Date(time + ss * j).getDate();//获取一周的后几天是多少号
+					this.ryuef = new Date(time + ss * j).getMonth() + 1;
+					this.ryear = new Date(time + ss * j).getFullYear();
+				};
+			},
+			data: {
+				add: 0,
+				sub: 0,
+				lyear: 2019,
+				ryear: 2020,
+				lyuef: 7,
+				ryuef: 8,
+				week: [
+					{ top: '日', bottom: 1 },
+					{ top: '一', bottom: 2 },
+					{ top: '二', bottom: 3 },
+					{ top: '三', bottom: 4 },
+					{ top: '四', bottom: 5 },
+					{ top: '五', bottom: 6 },
+					{ top: '六', bottom: 7 },
+				],
+			},
+
+			methods: {
+				back() {
+					const currentDay = new Date().getDay();//当天星期几
+					const time = new Date().getTime();//当天时间戳
+					const ss = 24 * 60 * 60 * 1000;//每天的毫秒数
+					this.sub--;
+					const n = this.add + this.sub;
+					this.week[currentDay].bottom = new Date(time + ss * (n * 7)).getDate();//获取减一周后是多少号
+
+
+					let j = 0;
+					for (let i = currentDay - 1; i >= 0; i--) {
+						j--;
+						this.week[i].bottom = new Date(time + ss * ((n * 7) + j)).getDate();
+						this.lyuef = new Date(time + ss * ((n * 7) + j)).getMonth() + 1;
+						this.lyear = new Date(time + ss * ((n * 7) + j)).getFullYear();
+					}
+					j = 0;
+					for (let i = currentDay + 1; i < 7; i++) {
+						j++;
+						this.week[i].bottom = new Date(time + ss * ((n * 7) + j)).getDate();
+						this.ryuef = new Date(time + ss * ((n * 7) + j)).getMonth() + 1;
+						this.ryear = new Date(time + ss * ((n * 7) + j)).getFullYear();
+					};
+				},
+				to() {
+					const currentDay = new Date().getDay();
+					const time = new Date().getTime();
+					const ss = 24 * 60 * 60 * 1000;
+					this.add++;
+					const n = this.add + this.sub;
+					this.week[currentDay].bottom = new Date(time + ss * (n * 7)).getDate();
+
+
+
+					let j = 0;
+					for (let i = currentDay - 1; i >= 0; i--) {
+						j--;
+						this.week[i].bottom = new Date(time + ss * ((n * 7) + j)).getDate();
+						this.lyuef = new Date(time + ss * ((n * 7) + j)).getMonth() + 1;
+						this.lyear = new Date(time + ss * ((n * 7) + j)).getFullYear();
+					}
+					j = 0;
+					for (let i = currentDay + 1; i < 7; i++) {
+						j++;
+						this.week[i].bottom = new Date(time + ss * ((n * 7) + j)).getDate();
+						this.ryuef = new Date(time + ss * ((n * 7) + j)).getMonth() + 1;
+						this.ryear = new Date(time + ss * ((n * 7) + j)).getFullYear();
+					};
+				}
+			}
+		});
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>画板</title>
+    <meta name="viewport" content="">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="qqf">
+    <meta http-equiv="refresh" content="600">
+    <link rel="icon" href="http://www.qiuqfang.top/upload/2021/08/fecoder-3078a03d285a4d8eb76a794b8f05eae1.png">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+<header></header>
+<main>
+<section>
+    <div id="main">
+        <canvas id="sketchpad" width="800px" height="500px">不支持canvas</canvas>
+    </div>
+    <div id="set">
+        <ul>
+            <li>
+                <label for="color">颜色:</label><input type="color" name="color" id="color">
+            </li>
+            <li>
+                <label for="width">粗细：</label>
+                <select name="width" id="width">
+                    <option value="1" selected>1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+            </li>
+            <li>
+                <input type="button" name="clear" value="清屏">
+            </li>
+        </ul>
+    </div>
+</section>
+</main>
+<footer></footer>
+
+<script src="index.js"></script>
+</body>
+</html>
