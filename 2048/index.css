@@ -1,0 +1,72 @@
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+body {
+  background-image: url("images/bg-img.jpg");
+  background-repeat: no-repeat;
+}
+article #container {
+  width: 440px;
+  height: 440px;
+  margin: 200px auto;
+  padding: 5px;
+  background-color: rgba(0, 0, 0, 0.8);
+  border: 10px solid #ffdead;
+  border-radius: 10px;
+}
+article #container li {
+  width: 100px;
+  height: 100px;
+  margin: 5px;
+  border-radius: 5px;
+  background-color: rgba(0, 167, 142, 0.9);
+  float: left;
+  text-align: center;
+}
+article #container li span {
+  display: block;
+  height: 100px;
+  line-height: 100px;
+  border-radius: 5px;
+  font-size: 40px;
+  color: pink;
+}
+/* 2、 4、 8、 16、 32、 64、 128 （需要7种颜色） */
+.onebg {
+  background-color: red;
+}
+.twobg {
+  background-color: green;
+}
+.threebg {
+  background-color: blue;
+}
+.fourbg {
+  background-color: yellow;
+}
+.fivebg {
+  background-color: black;
+}
+.sixbg {
+  background-color: rgb(200, 110, 200);
+}
+.sevenbg {
+  background-color: rgb(0, 255, 255);
+}
+
+.tip {
+  position: fixed;
+  top: 10px;
+  left: 20px;
+  width: 400px;
+  line-height: 40px;
+  text-align: left;
+  font-size: 12px;
+  color: #ffdead;
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 10px;
+  box-sizing: border-box;
+}
