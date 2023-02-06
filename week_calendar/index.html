@@ -1,120 +1,190 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="utf-8" />
+    <title>周历</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+      #app .week_switch_btn_group {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      #app button {
+        width: 80px;
+        height: 30px;
+        margin: 0 20px;
+        line-height: 30px;
+        padding: 0;
+        outline: none;
+        background-color: #eba7a7;
+        border: 1px solid #eba7a7;
+        border-radius: 5px;
+        color: #fff;
+        cursor: pointer;
+      }
 
-<head>
-	<meta charset="utf-8">
-	<title>周历</title>
-	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-	<style>
-		#app button {
-			width: 80px;
-			height: 30px;
-			line-height: 30px;
-			padding: 0;
-			outline: none;
-			background-color: #eba7a7;
-			border: 1px solid #eba7a7;
-			border-radius: 5px;
-			color: #fff;
-			cursor: pointer;
-		}
+      #app button:hover {
+        background-color: #f76e6e;
+        border-color: #f76e6e;
+        transition: all 0.3s;
+      }
 
-		#app button:hover {
-			background-color: #f76e6e;
-			border-color: #f76e6e;
-			transition: all 0.3s;
-		}
-	</style>
-</head>
+      #app div.week_wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
 
-<body>
-	<div id="app">
-		<button @click='back'>上一周</button>
-		<button @click='to'>下一周</button>
-		<div v-for="item in week">{{item.year}}年{{item.month}}月{{item.day}}号===>{{item.text}}</div>
-	</div>
-	<script>
-		new Vue({
-			el: "#app",
-			created() {
-				const currentDay = new Date().getDay();//当天星期几
-				const time = new Date().getTime();//当天时间戳
+      #app div.week_wrapper .week_item {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 20px;
+        width: 200px;
+        padding: 20px 0;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      #app div.week_wrapper .selected_week {
+        background-color: red;
+        border-color: red;
+        color: #fff;
+      }
+      #app div.week_wrapper .week_item:hover {
+      }
+    </style>
+  </head>
 
-				let j = 0;
-				this.changeValue(currentDay, time, j);
-				for (let i = currentDay - 1; i >= 0; i--) {
-					j--;
-					this.changeValue(i, time, j)
-				}
-				j = 0;
-				for (let i = currentDay + 1; i < 7; i++) {
-					j++;
-					this.changeValue(i, time, j)
+  <body>
+    <div id="app">
+      <div class="week_switch_btn_group">
+        <button @click="back">上一周</button>
+        <button @click="to">下一周</button>
+      </div>
 
-				};
-			},
-			data: {
-				millisecond: 24 * 60 * 60 * 1000,
-				add: 0,
-				sub: 0,
-				week: [
-					{ text: '星期日', year: new Date().getFullYear(), month: new Date().getMonth() + 1, day: 1 },
-					{ text: '星期一', year: new Date().getFullYear(), month: new Date().getMonth() + 1, day: 2 },
-					{ text: '星期二', year: new Date().getFullYear(), month: new Date().getMonth() + 1, day: 3 },
-					{ text: '星期三', year: new Date().getFullYear(), month: new Date().getMonth() + 1, day: 4 },
-					{ text: '星期四', year: new Date().getFullYear(), month: new Date().getMonth() + 1, day: 5 },
-					{ text: '星期五', year: new Date().getFullYear(), month: new Date().getMonth() + 1, day: 6 },
-					{ text: '星期六', year: new Date().getFullYear(), month: new Date().getMonth() + 1, day: 7 },
-				],
-			},
+      <div class="week_wrapper">
+        <div
+          v-for="(item, idx) in week"
+          :key="idx"
+          class="week_item"
+          :class="currentDay === idx && 'selected_week'"
+        >
+          {{item.year}}年{{item.month}}月{{item.day}}号
+          <div>{{item.text}}</div>
+        </div>
+      </div>
+    </div>
+    <script>
+      new Vue({
+        el: "#app",
+        created() {
+          let j = 0;
+          this.changeValue(this.currentDay, j);
+          for (let i = this.currentDay - 1; i >= 0; i--) {
+            j--;
+            this.changeValue(i, j);
+          }
+          j = 0;
+          for (let i = this.currentDay + 1; i < 7; i++) {
+            j++;
+            this.changeValue(i, j);
+          }
+        },
+        data: {
+          currentDay: new Date().getDay(), // 当天星期几
+          time: new Date().getTime(), // 当天时间戳
+          millisecond: 24 * 60 * 60 * 1000,
+          add: 0,
+          sub: 0,
+          week: [
+            {
+              text: "星期日",
+              year: new Date().getFullYear(),
+              month: new Date().getMonth() + 1,
+              day: 1,
+            },
+            {
+              text: "星期一",
+              year: new Date().getFullYear(),
+              month: new Date().getMonth() + 1,
+              day: 2,
+            },
+            {
+              text: "星期二",
+              year: new Date().getFullYear(),
+              month: new Date().getMonth() + 1,
+              day: 3,
+            },
+            {
+              text: "星期三",
+              year: new Date().getFullYear(),
+              month: new Date().getMonth() + 1,
+              day: 4,
+            },
+            {
+              text: "星期四",
+              year: new Date().getFullYear(),
+              month: new Date().getMonth() + 1,
+              day: 5,
+            },
+            {
+              text: "星期五",
+              year: new Date().getFullYear(),
+              month: new Date().getMonth() + 1,
+              day: 6,
+            },
+            {
+              text: "星期六",
+              year: new Date().getFullYear(),
+              month: new Date().getMonth() + 1,
+              day: 7,
+            },
+          ],
+        },
 
-			methods: {
-				back() {
-					const currentDay = new Date().getDay();//当天星期几
-					const time = new Date().getTime();//当天时间戳
-					this.sub--;
-					const n = this.add + this.sub;
+        methods: {
+          back() {
+            this.sub--;
+            const n = this.add + this.sub;
 
-					let j = 0;
-					this.changeValue(currentDay, time, (n * 7) + j);
-					for (let i = currentDay - 1; i >= 0; i--) {
-						j--;
-						this.changeValue(i, time, (n * 7) + j)
-
-					}
-					j = 0;
-					for (let i = currentDay + 1; i < 7; i++) {
-						j++;
-						this.changeValue(i, time, (n * 7) + j)
-
-					};
-				},
-				to() {
-					const currentDay = new Date().getDay();
-					const time = new Date().getTime();
-					this.add++;
-					const n = this.add + this.sub;
-					let j = 0;
-					this.changeValue(currentDay, time, (n * 7) + j);
-					for (let i = currentDay - 1; i >= 0; i--) {
-						j--;
-						this.changeValue(i, time, (n * 7) + j)
-					}
-					j = 0;
-					for (let i = currentDay + 1; i < 7; i++) {
-						j++;
-						this.changeValue(i, time, (n * 7) + j)
-					};
-				},
-				changeValue(idx, time, countDay) {
-					this.week[idx].year = new Date(time + this.millisecond * countDay).getFullYear();
-					this.week[idx].month = new Date(time + this.millisecond * countDay).getMonth() + 1;
-					this.week[idx].day = new Date(time + this.millisecond * countDay).getDate();
-				}
-			}
-
-		});
-	</script>
-</body>
-
+            let j = 0;
+            this.changeValue(this.currentDay, n * 7 + j);
+            for (let i = this.currentDay - 1; i >= 0; i--) {
+              j--;
+              this.changeValue(i, n * 7 + j);
+            }
+            j = 0;
+            for (let i = this.currentDay + 1; i < 7; i++) {
+              j++;
+              this.changeValue(i, n * 7 + j);
+            }
+          },
+          to() {
+            this.add++;
+            const n = this.add + this.sub;
+            let j = 0;
+            this.changeValue(this.currentDay, n * 7 + j);
+            for (let i = this.currentDay - 1; i >= 0; i--) {
+              j--;
+              this.changeValue(i, n * 7 + j);
+            }
+            j = 0;
+            for (let i = this.currentDay + 1; i < 7; i++) {
+              j++;
+              this.changeValue(i, n * 7 + j);
+            }
+          },
+          changeValue(idx, countDay) {
+            const date = new Date(this.time + this.millisecond * countDay);
+            this.week[idx].year = date.getFullYear();
+            this.week[idx].month = date.getMonth() + 1;
+            this.week[idx].day = date.getDate();
+          },
+        },
+      });
+    </script>
+  </body>
 </html>
