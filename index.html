@@ -4,42 +4,54 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="shortcut icon"
+      href="https://images-ivory-pi.vercel.app/favicon.svg"
+      type="image/x-icon"
+    />
     <title>Examples</title>
+    <style>
+      body h1 {
+        color: #2c2c2c;
+        font-style: italic;
+        text-align: center;
+      }
+      body .examples_wrapper {
+        display: flex;
+        flex-wrap: wrap;
+      }
+      body a {
+        display: block;
+        width: 100px;
+        padding: 20px;
+        margin: 20px 40px 20px 0;
+        border: 1px solid transparent;
+        border-radius: 10px;
+        text-decoration: none;
+        color: #555;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        transition: all 0.3s;
+      }
+      body a:hover {
+        background-color: #9e9e9e;
+        color: #fff;
+      }
+    </style>
   </head>
   <body>
-    <h1>Examples</h1>
-    <div>
+    <h1>Example List</h1>
+    <div class="examples_wrapper">
+      <a href="./ceiling/index.html">吸顶效果</a>
+      <a href="./magnifier/index.html">放大镜效果</a>
+      <a href="./popup/index.html">弹出层效果</a>
+      <a href="./ajax/index.html">Ajax</a>
+      <a href="./clipboard/index.html">剪切板</a>
+      <a href="./colorful_ball/index.html">炫彩小球</a>
+      <a href="./drawing_board/index.html">画板</a>
+      <a href="./gobang/index.html">五子棋</a>
+      <a href="./calculator/index.html">计算器</a>
+      <a href="./week_calendar/index.html">周历</a>
       <a href="./2048/index.html">2048</a>
-    </div>
-    <div>
-      <a href="./ajax/index.html">ajax</a>
-    </div>
-    <div>
-      <a href="./calculator/index.html">calculator</a>
-    </div>
-    <div>
-      <a href="./ceiling/index.html">ceiling</a>
-    </div>
-    <div>
-      <a href="./clipboard/index.html">clipboard</a>
-    </div>
-    <div>
-      <a href="./colorful_ball/index.html">colorful_ball</a>
-    </div>
-    <div>
-      <a href="./drawing_board/index.html">drawing_board</a>
-    </div>
-    <div>
-      <a href="./gobang/index.html">gobang</a>
-    </div>
-    <div>
-      <a href="./magnifier/index.html">magnifier</a>
-    </div>
-    <div>
-      <a href="./popup/index.html">popup</a>
-    </div>
-    <div>
-      <a href="./week_calendar/index.html">week_calendar</a>
     </div>
   </body>
 </html>
